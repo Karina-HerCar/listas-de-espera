@@ -41,12 +41,25 @@ public class mainInterface extends javax.swing.JFrame {
 
         mainContainer = new javax.swing.JPanel();
         titleLbl = new javax.swing.JLabel();
+        lam_r = new javax.swing.JLabel();
+        miu_r = new javax.swing.JLabel();
+        prob_r = new javax.swing.JLabel();
+        ls_r = new javax.swing.JLabel();
+        wq_r = new javax.swing.JLabel();
+        lq_r = new javax.swing.JLabel();
+        ws_r = new javax.swing.JLabel();
+        lq_1 = new javax.swing.JLabel();
+        ws_1 = new javax.swing.JLabel();
+        wq_1 = new javax.swing.JLabel();
         ls_2 = new javax.swing.JLabel();
         ls_1 = new javax.swing.JLabel();
         prob_1 = new javax.swing.JLabel();
         miu_1 = new javax.swing.JLabel();
         lam_1 = new javax.swing.JLabel();
         calc_btn = new javax.swing.JLabel();
+        sep3 = new javax.swing.JSeparator();
+        prob_txt = new javax.swing.JTextField();
+        prob_f = new javax.swing.JLabel();
         sep2 = new javax.swing.JSeparator();
         miu_txt = new javax.swing.JTextField();
         miu_lbl = new javax.swing.JLabel();
@@ -69,6 +82,49 @@ public class mainInterface extends javax.swing.JFrame {
         titleLbl.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         titleLbl.setText("Teoría de colas");
         mainContainer.add(titleLbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 440, 40));
+
+        lam_r.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
+        lam_r.setForeground(new java.awt.Color(11, 179, 137));
+        mainContainer.add(lam_r, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 110, 250, 20));
+
+        miu_r.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
+        miu_r.setForeground(new java.awt.Color(11, 179, 137));
+        mainContainer.add(miu_r, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 150, 250, 20));
+
+        prob_r.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
+        prob_r.setForeground(new java.awt.Color(11, 179, 137));
+        mainContainer.add(prob_r, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 190, 300, 20));
+
+        ls_r.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
+        ls_r.setForeground(new java.awt.Color(11, 179, 137));
+        mainContainer.add(ls_r, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 230, 210, 20));
+
+        wq_r.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
+        wq_r.setForeground(new java.awt.Color(11, 179, 137));
+        mainContainer.add(wq_r, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 260, 210, 20));
+
+        lq_r.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
+        lq_r.setForeground(new java.awt.Color(11, 179, 137));
+        mainContainer.add(lq_r, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 290, 170, 20));
+
+        ws_r.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
+        ws_r.setForeground(new java.awt.Color(11, 179, 137));
+        mainContainer.add(ws_r, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 330, 230, 20));
+
+        lq_1.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
+        lq_1.setForeground(new java.awt.Color(11, 179, 137));
+        lq_1.setText("Numero Promedio de Cientes (Lq):");
+        mainContainer.add(lq_1, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 290, -1, -1));
+
+        ws_1.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
+        ws_1.setForeground(new java.awt.Color(11, 179, 137));
+        ws_1.setText("Tiempo de Espera (ws):");
+        mainContainer.add(ws_1, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 330, -1, -1));
+
+        wq_1.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
+        wq_1.setForeground(new java.awt.Color(11, 179, 137));
+        wq_1.setText("Tiempo de Espera de los presentes (Wq): ");
+        mainContainer.add(wq_1, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 260, -1, -1));
 
         ls_2.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
         ls_2.setForeground(new java.awt.Color(11, 179, 137));
@@ -103,6 +159,9 @@ public class mainInterface extends javax.swing.JFrame {
         calc_btn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         calc_btn.setOpaque(true);
         calc_btn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                calc_btnMouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 calc_btnMouseEntered(evt);
             }
@@ -110,7 +169,20 @@ public class mainInterface extends javax.swing.JFrame {
                 calc_btnMouseExited(evt);
             }
         });
-        mainContainer.add(calc_btn, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 230, 110, 40));
+        mainContainer.add(calc_btn, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 280, 110, 40));
+        mainContainer.add(sep3, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 260, 120, -1));
+
+        prob_txt.setFont(new java.awt.Font("Consolas", 0, 18)); // NOI18N
+        prob_txt.setForeground(new java.awt.Color(11, 179, 137));
+        prob_txt.setBorder(null);
+        prob_txt.setCaretColor(new java.awt.Color(255, 255, 255));
+        prob_txt.setOpaque(false);
+        mainContainer.add(prob_txt, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 220, 120, 40));
+
+        prob_f.setFont(new java.awt.Font("Consolas", 0, 18)); // NOI18N
+        prob_f.setForeground(new java.awt.Color(11, 179, 139));
+        prob_f.setText("Probabilidad Fija en: ");
+        mainContainer.add(prob_f, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 240, -1, -1));
         mainContainer.add(sep2, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 200, 120, -1));
 
         miu_txt.setFont(new java.awt.Font("Consolas", 0, 18)); // NOI18N
@@ -242,6 +314,10 @@ public class mainInterface extends javax.swing.JFrame {
         new ColorTransition(calc_btn, new Color(11, 179, 137), new Color(37, 54, 82), new Color(37, 54, 82), new Color(11, 179, 137)).execute();
     }//GEN-LAST:event_calc_btnMouseExited
 
+    private void calc_btnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_calc_btnMouseClicked
+        AM();
+    }//GEN-LAST:event_calc_btnMouseClicked
+
     private void num(JTextField a) {
         //evitar doble punto
         a.addKeyListener(new KeyAdapter() {
@@ -322,8 +398,7 @@ public class mainInterface extends javax.swing.JFrame {
         lq = (a/m)*ls;
         lq_r.setText(String.valueOf(f.format(lq)));
     }
-    
-    
+
     /**
      * @param args the command line arguments
      */
@@ -367,18 +442,31 @@ public class mainInterface extends javax.swing.JFrame {
     private javax.swing.JPanel dragged_zone;
     private javax.swing.JLabel inputBg;
     private javax.swing.JLabel lam_1;
+    private javax.swing.JLabel lam_r;
     private javax.swing.JLabel lambda_lbl;
     private javax.swing.JTextField lambdaa_txt;
+    private javax.swing.JLabel lq_1;
+    private javax.swing.JLabel lq_r;
     private javax.swing.JLabel ls_1;
     private javax.swing.JLabel ls_2;
+    private javax.swing.JLabel ls_r;
     private javax.swing.JPanel mainContainer;
     private javax.swing.JLabel main_lbl;
     private javax.swing.JLabel miu_1;
     private javax.swing.JLabel miu_lbl;
+    private javax.swing.JLabel miu_r;
     private javax.swing.JTextField miu_txt;
     private javax.swing.JLabel prob_1;
+    private javax.swing.JLabel prob_f;
+    private javax.swing.JLabel prob_r;
+    private javax.swing.JTextField prob_txt;
     private javax.swing.JSeparator sep1;
     private javax.swing.JSeparator sep2;
+    private javax.swing.JSeparator sep3;
     private javax.swing.JLabel titleLbl;
+    private javax.swing.JLabel wq_1;
+    private javax.swing.JLabel wq_r;
+    private javax.swing.JLabel ws_1;
+    private javax.swing.JLabel ws_r;
     // End of variables declaration//GEN-END:variables
 }
