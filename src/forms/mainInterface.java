@@ -6,6 +6,11 @@ package forms;
 
 import Desvanecimiento.Desvanecimiento;
 import java.awt.Color;
+import java.awt.Toolkit;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.text.DecimalFormat;
+import javax.swing.JTextField;
 
 /**
  *
@@ -18,6 +23,9 @@ public class mainInterface extends javax.swing.JFrame {
 
     public mainInterface() {
         initComponents();
+        num(lambdaa_txt);
+        num(miu_txt);
+        num(prob_txt);
         desv = new Desvanecimiento();
         desv.Abrir(this, 5);
     }
@@ -234,6 +242,88 @@ public class mainInterface extends javax.swing.JFrame {
         new ColorTransition(calc_btn, new Color(11, 179, 137), new Color(37, 54, 82), new Color(37, 54, 82), new Color(11, 179, 137)).execute();
     }//GEN-LAST:event_calc_btnMouseExited
 
+    private void num(JTextField a) {
+        //evitar doble punto
+        a.addKeyListener(new KeyAdapter() {
+            public void keyTyped(KeyEvent e) {
+                char c = e.getKeyChar();
+
+                if (c == '-' && a.getText().contains("-")) {
+                    e.consume();
+                } else if (!Character.isDigit(c) && c != '.' && c != '-') {
+                    e.consume();
+                }
+
+                if (c == '.' && a.getText().contains(".")) {
+                    e.consume();
+                }
+                if (a.getText().length() >= 12) {
+                    e.consume();
+                    Toolkit.getDefaultToolkit().beep();
+                }
+            }
+        });
+
+    }
+    DecimalFormat f = new DecimalFormat("#.##");
+
+    public void AM() {
+        double lambda = Double.parseDouble(lambdaa_txt.getText());
+        double miu = Double.parseDouble(miu_txt.getText());
+
+        lambda = lambda / 60;
+        miu = miu / 60;
+
+        lam_r.setText(String.valueOf(" " + f.format(lambda)) + " por min");
+        miu_r.setText(String.valueOf(" " + f.format(miu)) + " por min");
+        probabilidad(lambda, miu);
+        Wq(lambda,miu);
+        Ls(lambda, miu,probabilidad(lambda, miu));
+        Ws(Ls(lambda, miu,probabilidad(lambda, miu)),lambda);
+        Lq(lambda, miu,Ls(lambda, miu,probabilidad(lambda, miu)));
+    }
+
+    public double probabilidad(double lambda, double miu) {
+        double probabilidad = 0.0;
+        if (prob_txt.getText().equals("")) {
+            probabilidad = lambda / miu;
+            prob_r.setText(String.valueOf(f.format(probabilidad)));
+        } else {
+            prob_r.setText(prob_txt.getText());
+        }
+        return probabilidad;
+    }
+
+    public void Wq(double lambda, double miu) {
+        double wq = 0.0;
+        wq = lambda / (miu * (miu - lambda));
+        wq_r.setText(String.valueOf(f.format(wq)));
+    }
+
+    public double Ls(double a, double m, double p) {
+        double ls = 0.0;
+        if (p != 0.0) {
+            ls = a / (m - a);
+        } else {
+            ls = p / (1 - p);
+        }
+        ls_r.setText(String.valueOf(f.format(ls)));
+        return ls;
+    }
+
+    public void Ws(double ls, double a) {
+        double ws = 0.0;
+        ws = ls / a;
+        ws_r.setText(String.valueOf(f.format(ws)));
+    }
+
+    public void Lq(double a, double m, double ls) {
+        double lq = 0.0;
+        lq = (a/m)*ls;
+        lq_r.setText(String.valueOf(f.format(lq)));
+    }
+    
+    
     /**
      * @param args the command line arguments
      */
